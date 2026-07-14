@@ -26,7 +26,10 @@ class StartsWithHandler(private val letter: String): TerminalHandler(TerminalTyp
         }
 
         return items.mapIndexedNotNull { index, item ->
-            if (item.hoverName.string.startsWith(letter, true) && !item.hasGlint() && index !in clickedSlots) index else null
+            if (item.hoverName.string.startsWith(letter, true) &&
+                index !in clickedSlots &&
+                (!item.hasGlint() || item.item == Items.NETHER_STAR || item.item == Items.EXPERIENCE_BOTTLE)
+            ) index else null
         }
     }
 
